@@ -10,6 +10,7 @@ import ScrollCardsNavigator from './components/ScrollCardsNavigator'
 import AppContentLayout from './components/AppContentLayout'
 import 'react-contexify/dist/ReactContexify.css'
 import PreferencesContext from './preferences/PreferencesContext'
+import FeedLayout from './components/FeedLayout'
 
 function App() {
   const { marketingBannerConfig = {}, feedbackWidget } = useContext(ConfigurationContext)
@@ -33,10 +34,11 @@ function App() {
       />
       <ScrollCardsNavigator />
       <MarketingBanner {...marketingBannerConfig} />
-      <AppContentLayout setShowSettings={setShowSettings} />
+      <FeedLayout />
+      {/*<AppContentLayout setShowSettings={setShowSettings} />
       <BookmarksSidebar showSidebar={showSideBar} onClose={() => setShowSideBar(false)} />
 
-      <Footer feedbackWidget={feedbackWidget} />
+      <Footer feedbackWidget={feedbackWidget} />*/}
     </div>
   )
 }
