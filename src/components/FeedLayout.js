@@ -8,7 +8,7 @@ function FeedLayout() {
   useEffect(() => {
     const setup = async () => {
       const articles = await feed.getDummyData()
-      setFeedItems(articles.data)
+      setFeedItems(articles.data.data)
     }
     setup()
   }, [])
@@ -18,11 +18,11 @@ function FeedLayout() {
         return (
           <div className="item" key={index}>
             <div className="item-image">
-              <img src={item.social_image} />
+              <img src={item.img_src} />
             </div>
             <div className="item-content">
               <h4 className="item-title">{item.title}</h4>
-              <ColoredLanguagesBadge languages={item.tag_list.slice(0, 3)} />
+              <ColoredLanguagesBadge languages={item.tags.slice(0, 3)} />
             </div>
           </div>
         )
