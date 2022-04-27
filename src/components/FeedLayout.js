@@ -1,22 +1,31 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import ColoredLanguagesBadge from '../components/ColoredLanguagesBadge'
 import feed from '../services/feed'
+import InfiniteScroll from 'react-infinite-scroller'
 
 function FeedLayout() {
   const [feedItems, setFeedItems] = useState([])
+  const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    const setup = async () => {
-      const articles = await feed.getDummyData()
-      setFeedItems(articles.data.data)
-    }
-    setup()
-  }, [])
+  const loadMore = async (page) => {
+    const articles = await feed.getDummyData(page)
+    setHasMore(articles.data.data.length > 0)
+    setFeedItems((prev) => [...prev, ...articles.data.data])
+  }
+
   return (
-    <main className="AppContent scrollable feed">
+    <InfiniteScroll
+      pageStart={-1}
+      loadMore={(p) => {
+        loadMore(p)
+      }}
+      hasMore={hasMore}
+      element="main"
+      className="AppContent scrollable feed"
+      useWindow={true}>
       {feedItems.map((item, index) => {
         return (
-          <div className="item" key={index}>
+          <div className="item" key={item.id}>
             <div className="item-image">
               <img src={item.img_src} />
             </div>
@@ -27,7 +36,7 @@ function FeedLayout() {
           </div>
         )
       })}
-    </main>
+    </InfiniteScroll>
   )
 }
 

@@ -811,15 +811,13 @@ Producthunt item
   opacity:1
 }
 .feed {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, 23%);
   justify-content: center;
+  grid-gap: 24px;
   gap: 24px;
 }
-.feed .item{
-  width: 23%;
+.feed .item {
   height: auto;
   border-radius: 4px;
   background: var(--card-header-background-color);
