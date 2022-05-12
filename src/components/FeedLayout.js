@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState } from 'react'
 import ColoredLanguagesBadge from '../components/ColoredLanguagesBadge'
 import feed from '../services/feed'
 import InfiniteScroll from 'react-infinite-scroller'
 import { MdAccessTime } from 'react-icons/md'
-import { format } from 'timeago.js'
 
 function FeedLayout() {
   const [feedItems, setFeedItems] = useState([])
@@ -35,7 +34,7 @@ function FeedLayout() {
                 <ColoredLanguagesBadge languages={item.tags.slice(0, 3)} />
                 <span className="item-date">
                   <MdAccessTime className="rowTitleIcon" />
-                  {format(new Date())}
+                  {new Date(item.pub_date).toDateString().replace(/^\S+\s/, '')}
                 </span>
               </div>
             </div>
