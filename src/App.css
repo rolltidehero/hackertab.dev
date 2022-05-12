@@ -812,7 +812,7 @@ Producthunt item
 }
 .feed {
   display: grid;
-  grid-template-columns: repeat(4, 22%);
+  grid-template-columns: repeat(4, 24%);
   justify-content: center;
   grid-gap: 24px;
   gap: 24px;
