@@ -3,6 +3,7 @@ import ColoredLanguagesBadge from '../components/ColoredLanguagesBadge'
 import feed from '../services/feed'
 import InfiniteScroll from 'react-infinite-scroller'
 import { MdAccessTime } from 'react-icons/md'
+import ClickableItem from './ClickableItem'
 
 function FeedLayout() {
   const [feedItems, setFeedItems] = useState([])
@@ -26,7 +27,11 @@ function FeedLayout() {
       useWindow={true}>
       {feedItems.map((item, index) => {
         return (
-          <div className="item" key={item.id}>
+          <ClickableItem
+            className="item"
+            key={item.id}
+            link={item.link}
+            analyticsSource={item.source_id}>
             <div className="item-content">
               <span className="item-source">{item.source_id}</span>
               <h4 className="item-title">{item.title}</h4>
@@ -41,7 +46,7 @@ function FeedLayout() {
             <div className="item-image">
               <img src={item.img_src} />
             </div>
-          </div>
+          </ClickableItem>
         )
       })}
     </InfiniteScroll>

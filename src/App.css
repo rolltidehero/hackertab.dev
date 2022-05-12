@@ -821,6 +821,7 @@ Producthunt item
   height: auto;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
   justify-content: space-between;
   background: var(--card-header-background-color);
   box-shadow: 1px 1px 0px #2f3134,
