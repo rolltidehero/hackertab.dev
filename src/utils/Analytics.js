@@ -69,6 +69,10 @@ const trackReposDateRangeChange = (dateRange) => {
   trackEvent('Repos', 'ChangeDateRange', dateRange)
 }
 
+const trackLayoutTypeChange = (layoutType) => {
+  trackEvent('Layout', 'Use', layoutType)
+}
+
 const trackException = (exceptionMessage, fatal) => {
   if (!process.env.REACT_APP_ANALYTICS_ID) {
     console.log('Missing analytics ID')
@@ -90,8 +94,8 @@ const trackException = (exceptionMessage, fatal) => {
     console.log('Analytics debug payload', payload.toString())
     return
   }
-
-  navigator.sendBeacon('https://www.google-analytics.com/collect', payload.toString())
+  // Disabled
+  //navigator.sendBeacon('https://www.google-analytics.com/collect', payload.toString())
 }
 const getResolution = () => {
   const realWidth = window.screen.width
@@ -133,8 +137,8 @@ const trackEvent = (category, action, label) => {
     console.log('Analytics debug payload', payload.toString())
     return
   }
-
-  navigator.sendBeacon('https://www.google-analytics.com/collect', payload.toString())
+  // Disabled
+  //navigator.sendBeacon('https://www.google-analytics.com/collect', payload.toString())
 }
 
 const getRandomUserId = () => {
@@ -170,4 +174,5 @@ export {
   trackSearch,
   trackSearchEngineChange,
   trackException,
+  trackLayoutTypeChange,
 }

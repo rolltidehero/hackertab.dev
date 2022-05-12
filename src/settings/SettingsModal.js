@@ -8,7 +8,12 @@ import '../App.css';
 import './settings.css';
 import PreferencesContext from '../preferences/PreferencesContext';
 import ConfigurationContext from '../configuration/ConfigurationContext';
-import { SUPPORTED_CARDS, SUPPORTED_SEARCH_ENGINES, APP } from '../Constants'
+import {
+  SUPPORTED_CARDS,
+  SUPPORTED_SEARCH_ENGINES,
+  SUPPORTED_LAYOUT_TYPES,
+  APP,
+} from '../Constants'
 import {
   trackAddLanguage,
   trackRemoveLanguage,
@@ -17,13 +22,22 @@ import {
   trackOpenLinksNewTab,
   trackListingModeChange,
   trackSearchEngineChange,
+  trackLayoutTypeChange,
 } from '../utils/Analytics'
 
 function SettingsModal({ showSettings, setShowSettings }) {
   const { supportedTags } = useContext(ConfigurationContext)
   const preferences = useContext(PreferencesContext)
-  const { dispatcher, cards, userSelectedTags, openLinksNewTab, listingMode, theme, searchEngine } =
-    preferences
+  const {
+    dispatcher,
+    cards,
+    userSelectedTags,
+    openLinksNewTab,
+    listingMode,
+    theme,
+    searchEngine,
+    layoutType = 'deck',
+  } = preferences
   const [selectedCards, setSelectedCards] = useState(cards)
 
   const handleCloseModal = () => {
@@ -79,6 +93,11 @@ function SettingsModal({ showSettings, setShowSettings }) {
 
   const onDarkModeChange = (e) => {
     dispatcher({ type: 'toggleTheme' })
+  }
+
+  const onLayoutTypeChange = (layoutType) => {
+    trackLayoutTypeChange(layoutType.label)
+    dispatcher({ type: 'setLayoutType', value: layoutType.value })
   }
 
   return (
@@ -166,6 +185,21 @@ function SettingsModal({ showSettings, setShowSettings }) {
               checked={listingMode == 'compact'}
               icons={false}
               onChange={onlistingModeChange}
+            />
+          </div>
+        </div>
+
+        <div className="settingRow">
+          <p className="settingTitle">Layout type</p>
+          <div className="settingContent">
+            <Select
+              options={SUPPORTED_LAYOUT_TYPES}
+              value={SUPPORTED_LAYOUT_TYPES.find((type) => type.value == layoutType)}
+              isMulti={false}
+              isClearable={false}
+              isSearchable={false}
+              classNamePrefix={'hackertab'}
+              onChange={onLayoutTypeChange}
             />
           </div>
         </div>

@@ -159,4 +159,14 @@ export const MY_LANGUAGES_TAG = {
   hashnodeValues: ['myLangs'],
 }
 export const MAX_MERGED_ITEMS_PER_LANGUAGE = 10
+export const SUPPORTED_LAYOUT_TYPES = [
+  {
+    label: 'Deck',
+    value: 'deck',
+  },
+  {
+    label: 'Feed',
+    value: 'feed',
+  },
+]
 export { APP }
