@@ -63,6 +63,11 @@ const AppReducer = (state, action) => {
         },
       }
       break
+
+    case 'setLayoutType':
+      newState = { ...newState, layoutType: value }
+      break
+
     default:
       throw new Error()
   }
@@ -77,6 +82,7 @@ const AppReducer = (state, action) => {
     userBookmarks: newState.userBookmarks,
     searchEngine: newState.searchEngine,
     cardsSettings: newState.cardsSettings,
+    layoutType: newState.layoutType,
   }
   AppStorage.setItem(LS_PREFERENCES_KEY, storageData)
   return newState

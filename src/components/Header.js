@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { BsFillGearFill } from "react-icons/bs"
-import { CgTab } from 'react-icons/cg';
-import { BsFillBookmarksFill } from "react-icons/bs"
-import { ReactComponent as HackertabLogo } from '../logo.svg';
-import UserTags from "./UserTags";
+import { BsFillGearFill, BsFillGrid1X2Fill } from 'react-icons/bs'
+import { CgTab } from 'react-icons/cg'
+import { BsFillBookmarksFill } from 'react-icons/bs'
+import { ReactComponent as HackertabLogo } from '../logo.svg'
+import UserTags from './UserTags'
 import { SUPPORTED_SEARCH_ENGINES } from '../Constants'
 import SettingsModal from '../settings/SettingsModal'
 import { BsMoon } from 'react-icons/bs'
@@ -11,6 +11,7 @@ import { IoMdSunny } from 'react-icons/io'
 import { trackThemeChange, trackSearch } from '../utils/Analytics'
 import Changelog from './Changelog'
 import { GoSearch } from 'react-icons/go'
+import { MdViewColumn } from 'react-icons/md'
 
 function SearchBar({ state }) {
   const keywordsInputRef = React.useRef(null)
@@ -43,6 +44,8 @@ function SearchBar({ state }) {
 }
 function Header({ state, dispatcher, showSideBar, setShowSideBar, showSettings, setShowSettings }) {
   const [themeIcon, setThemeIcon] = useState(<BsMoon />)
+  const [layoutIcon, setLayoutIcon] = useState()
+
   const isFirstRun = useRef(true)
 
   useEffect(() => {
@@ -68,6 +71,14 @@ function Header({ state, dispatcher, showSideBar, setShowSideBar, showSettings, 
     }
   }, [state?.theme])
 
+  useEffect(() => {
+    if (!state?.layoutType || state.layoutType == 'deck') {
+      setLayoutIcon(<BsFillGrid1X2Fill />)
+    } else {
+      setLayoutIcon(<MdViewColumn />)
+    }
+  }, [state?.layoutType])
+
   const onThemeChange = () => {
     dispatcher({ type: 'toggleTheme' })
   }
@@ -86,6 +97,14 @@ function Header({ state, dispatcher, showSideBar, setShowSideBar, showSettings, 
     ) : null
   }
 
+  const onLayoutChange = () => {
+    if (!state.layoutType || state.layoutType == 'deck') {
+      dispatcher({ type: 'setLayoutType', value: 'feed' })
+    } else {
+      dispatcher({ type: 'setLayoutType', value: 'deck' })
+    }
+  }
+
   return (
     <>
       <SettingsModal showSettings={showSettings} setShowSettings={setShowSettings} />
@@ -102,6 +121,9 @@ function Header({ state, dispatcher, showSideBar, setShowSideBar, showSettings, 
         <div className="extras">
           <button className="extraBtn" onClick={onSettingsClick}>
             <BsFillGearFill />
+          </button>
+          <button className="extraBtn" onClick={onLayoutChange}>
+            {layoutIcon}
           </button>
           <button className="extraBtn darkModeBtn" onClick={onThemeChange}>
             {themeIcon}

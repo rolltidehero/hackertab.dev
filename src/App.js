@@ -34,11 +34,16 @@ function App() {
       />
       <ScrollCardsNavigator />
       <MarketingBanner {...marketingBannerConfig} />
-      <FeedLayout />
-      {/*<AppContentLayout setShowSettings={setShowSettings} />
-      <BookmarksSidebar showSidebar={showSideBar} onClose={() => setShowSideBar(false)} />
 
-      <Footer feedbackWidget={feedbackWidget} />*/}
+      {!state.layoutType || state.layoutType == 'deck' ? (
+        <>
+          <AppContentLayout setShowSettings={setShowSettings} />
+          <BookmarksSidebar showSidebar={showSideBar} onClose={() => setShowSideBar(false)} />
+          <Footer feedbackWidget={feedbackWidget} />
+        </>
+      ) : (
+        <FeedLayout />
+      )}
     </div>
   )
 }
