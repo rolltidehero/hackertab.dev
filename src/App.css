@@ -833,6 +833,7 @@ Producthunt item
 }
 .feed .item:hover {
   cursor: pointer;
+  background: var(--card-background-focus-color);
 }
 .feed .item-meta {
   display: flex;
