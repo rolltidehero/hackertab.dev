@@ -1,57 +1,60 @@
 html.dark {
-  --app-name-text-color: #FFF;
-  --background-color: #0D1116;
-  --primary-text-color: #FFF;
+  --app-name-text-color: #fff;
+  --background-color: #0d1116;
+  --primary-text-color: #fff;
   --primary-hover-text-color: #b1b1b1;
   --secondary-text-color: #a2a7ad;
   --overlay-background-color: #7985958a;
   --language-dot-background-color: #424d5a;
 
   --dark-mode-background-color: #1c2026;
-  --dark-mode-text-color: #F0C73D;
+  --dark-mode-text-color: #f0c73d;
 
   --scrollbar-background-color: #1d2126;
   --scrollbar-accent-color: #6c6e71;
 
   /** Buttons **/
-  --button-background-color: #1C2026 ;
-  --button-text-color: #FFF ;
+  --button-background-color: #1c2026;
+  --button-text-color: #fff;
 
   /**Card **/
-  --card-background-color: #0D1116;
+  --card-background-color: #0d1116;
   --card-header-text-color: #798595;
-  --card-header-background-color: #1C2026;
-  --card-border-color: #1F2429;
-  --card-content-divider:#1F2429;
+  --card-header-background-color: #1c2026;
+  --card-border-color: #1f2429;
+  --card-content-divider: #1f2429;
   --card-background-focus-color: #181c21;
+  --card-3d-border-color: #2f3134;
 
   /*Tag*/
-  --tag-background-color: #1C2026;
-  --tag-border-color: #1F2429;
-  --tag-text-color: #FFFFFF;
+  --tag-background-color: #1c2026;
+  --tag-border-color: #1f2429;
+  --tag-text-color: #ffffff;
   --tag-secondary-color: #4d535a;
-  --tag-input-background: #FFF;
+  --tag-input-background: #fff;
 
   /*Card Action button*/
-  --card-actions-background-shadow: #1C2026;
+  --card-actions-background-shadow: #1c2026;
   --card-action-button-background: #798595;
-  --card-action-button-color: #FFF;
-  --card-active-action-button-background: #FFF;
+  --card-action-button-color: #fff;
+  --card-active-action-button-background: #fff;
   --card-active-action-button-color: #798595;
 
   /*Tooltip */
   --tooltip-background-color: #252a31;
   --tooltip-divider-color: #576172;
-  --tooltip-text-color: #FFF;
+  --tooltip-text-color: #fff;
   --tooltip-shadow-color: #000000;
-  --tooltip-accent-color: #0366D6;
+  --tooltip-accent-color: #0366d6;
+  --source-badge-background-color: #2e3238;
+  --source-badge-text-color: #808793;
 }
 
 html.light {
-  --app-name-text-color: #253B53;
-  --background-color: #EFF6FE;
+  --app-name-text-color: #253b53;
+  --background-color: #eff6fe;
   --primary-text-color: #2d3b4a;
-  --secondary-text-color: #656D76;
+  --secondary-text-color: #656d76;
   --overlay-background-color: #0000005c;
   --primary-hover-text-color: #495a6b;
   --language-dot-background-color: #cfddec;
@@ -60,37 +63,40 @@ html.light {
   --scrollbar-accent-color: #b9cadc;
 
   --dark-mode-background-color: #243b53;
-  --dark-mode-text-color: #F0C73D;
+  --dark-mode-text-color: #f0c73d;
 
-  --button-background-color: #d2deeb ;
-  --button-text-color: #3C5065;
+  --button-background-color: #d2deeb;
+  --button-text-color: #3c5065;
 
   /**Card **/
-  --card-background-color: #FFFFFF;
-  --card-header-text-color: #3C5065;
-  --card-header-background-color: #F9FAFE;
+  --card-background-color: #ffffff;
+  --card-header-text-color: #3c5065;
+  --card-header-background-color: #f9fafe;
   --card-border-color: #007eff1f;
-  --card-content-divider:#e9ebec;
+  --card-content-divider: #e9ebec;
   --card-background-focus-color: #f5f8fb;
+  --card-3d-border-color: #e2eaf2;
 
   /*Card Action button*/
   --card-actions-background-shadow: #edf5ff;
   --card-action-button-background: #d2deeb;
-  --card-action-button-color: #3C5065;
-  --card-active-action-button-background: #253B53;
-  --card-active-action-button-color: #FFF;
+  --card-action-button-color: #3c5065;
+  --card-active-action-button-background: #253b53;
+  --card-active-action-button-color: #fff;
 
   /*Tag*/
-  --tag-background-color: #243B53;
+  --tag-background-color: #243b53;
   --tag-border-color: #e9ebec;
-  --tag-text-color: #FFFFFF;
+  --tag-text-color: #ffffff;
   --tag-secondary-color: #e9ebec;
-  --tag-input-background: #243B53;
+  --tag-input-background: #243b53;
 
   /*Tooltip */
-  --tooltip-background-color: #FFFFFF;
+  --tooltip-background-color: #ffffff;
   --tooltip-divider-color: #e9ebec;
-  --tooltip-text-color: #3C5065;
+  --tooltip-text-color: #3c5065;
   --tooltip-shadow-color: #dee4ec;
-  --tooltip-accent-color: #0366D6;
+  --tooltip-accent-color: #0366d6;
+  --source-badge-background-color: #e1eaf2;
+  --source-badge-text-color: #929db0;
 }
