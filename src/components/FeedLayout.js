@@ -36,7 +36,9 @@ function FeedLayout() {
               <span className="item-source">{item.source_id}</span>
               <h4 className="item-title">{item.title}</h4>
               <div className="item-meta">
-                <ColoredLanguagesBadge languages={item.tags.slice(0, 3)} />
+                <span className="item-date">
+                  <ColoredLanguagesBadge languages={item.tags.slice(0, 3)} />
+                </span>
                 <span className="item-date">
                   <MdAccessTime className="rowTitleIcon" />
                   {new Date(item.pub_date).toDateString().replace(/^\S+\s/, '')}
