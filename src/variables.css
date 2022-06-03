@@ -48,6 +48,7 @@ html.dark {
   --tooltip-accent-color: #0366d6;
   --source-badge-background-color: #2e3238;
   --source-badge-text-color: #808793;
+  --placeholder-background-color: #1c2026;
 }
 
 html.light {
@@ -99,4 +100,6 @@ html.light {
   --tooltip-accent-color: #0366d6;
   --source-badge-background-color: #e1eaf2;
   --source-badge-text-color: #929db0;
+
+  --placeholder-background-color: #e7eff7;
 }
