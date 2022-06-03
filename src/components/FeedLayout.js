@@ -1,23 +1,100 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import ColoredLanguagesBadge from '../components/ColoredLanguagesBadge'
 import feed from '../services/feed'
 import InfiniteScroll from 'react-infinite-scroller'
 import { MdAccessTime } from 'react-icons/md'
 import ClickableItem from './ClickableItem'
+import { BiBookmarkPlus } from 'react-icons/bi'
+import PreferencesContext from '../preferences/PreferencesContext'
+import ArticleFeedItem from './feed/ArticleFeedItem'
+import GithubFeedItem from './feed/GithubFeedItem'
+import ProducthuntFeedItem from './feed/ProducthuntFeedItem'
+import AdFeedItem from './feed/AdFeedItem'
 
 function FeedLayout() {
+  const preferences = useContext(PreferencesContext)
+  const { userSelectedTags } = preferences
   const [feedItems, setFeedItems] = useState([])
   const [hasMore, setHasMore] = useState(true)
+  const [promisesValues, setPromisesValues] = useState([])
 
+  useEffect(() => {
+    const fetchInitialFeed = async () => {
+      const tags = userSelectedTags.map((v) => v.value).join(',')
+      const feedItemsPromises = [
+        feed.getFeed(tags),
+        feed.getGithubFeed(tags),
+        feed.getProducthuntFeed(),
+      ]
+
+      let promisesRequests = await Promise.allSettled(feedItemsPromises)
+      let promisesValues = []
+      promisesRequests.map((res) => {
+        console.log(res)
+        let value = res.value
+        if (res.status === 'rejected') {
+          return {}
+        }
+
+        let url = value.config.url
+        if (url.includes('producthunt')) {
+          return (promisesValues['producthunt'] = value.data)
+        } else if (url.includes('github')) {
+          return (promisesValues['github'] = value.data)
+        } else {
+          return (promisesValues['articles'] = value.data.data)
+        }
+      })
+
+      setPromisesValues(promisesValues)
+      constructFeed(promisesValues)
+    }
+    fetchInitialFeed()
+  }, [])
+
+  // To be refactored
+  const constructFeed = (feedValues) => {
+    let items = [...feedValues.articles]
+    items.splice(0, 0, { type: 'ad' })
+
+    const githubItem = feedValues.github[0]
+    githubItem.type = 'github'
+    items.splice(5, 0, githubItem)
+    feedValues.github.splice(0, 1)
+
+    const producthuntItem = feedValues.producthunt[0]
+    producthuntItem.type = 'producthunt'
+    items.splice(10, 0, feedValues.producthunt[0])
+    feedValues.producthunt.splice(0, 1)
+
+    console.log('New feed', items)
+    setFeedItems(items)
+    promisesValues.github = feedValues.github
+    setPromisesValues(promisesValues)
+  }
+  // To be refactored
   const loadMore = async (page) => {
-    const articles = await feed.getDummyData(page)
+    const articles = await feed.getFeed(userSelectedTags.map((v) => v.value).join(','), page)
     setHasMore(articles.data.data.length > 0)
-    setFeedItems((prev) => [...prev, ...articles.data.data])
+
+    let newItems = [...articles.data.data]
+    newItems.splice(3, 0, { type: 'ad' })
+
+    if (promisesValues) {
+      const githubItem = promisesValues.github[0]
+      githubItem.type = 'github'
+      newItems.splice(5, 0, githubItem)
+      promisesValues.github.splice(0, 1)
+      setPromisesValues(promisesValues)
+    }
+
+    setFeedItems((prev) => [...prev, ...newItems])
   }
 
   return (
     <InfiniteScroll
       pageStart={-1}
+      initialLoad={true}
       loadMore={(p) => {
         loadMore(p)
       }}
@@ -26,29 +103,18 @@ function FeedLayout() {
       className="AppContent scrollable feed"
       useWindow={true}>
       {feedItems.map((item, index) => {
-        return (
-          <ClickableItem
-            className="item"
-            key={item.id}
-            link={item.link}
-            analyticsSource={item.source_id}>
-            <div className="item-content">
-              <span className="item-source">{item.source_id}</span>
-              <h4 className="item-title">{item.title}</h4>
-              <div className="item-meta">
-                <span className="item-date">
-                  <ColoredLanguagesBadge languages={item.tags.slice(0, 3)} />
-                </span>
-                <span className="item-date">
-                  <MdAccessTime className="rowTitleIcon" />
-                  {new Date(item.pub_date).toDateString().replace(/^\S+\s/, '')}
-                </span>
-              </div>
-            </div>
-            <div className="item-image">
-              <img src={item.img_src} />
-            </div>
-          </ClickableItem>
+        return item.type ? (
+          item.type === 'ad' ? (
+            <AdFeedItem />
+          ) : item.type === 'github' ? (
+            <GithubFeedItem item={item} />
+          ) : item.type === 'producthunt' ? (
+            <ProducthuntFeedItem item={item} />
+          ) : (
+            <div>Unsupported type</div>
+          )
+        ) : (
+          <ArticleFeedItem item={item} />
         )
       })}
     </InfiniteScroll>
