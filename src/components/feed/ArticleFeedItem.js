@@ -3,8 +3,31 @@ import ColoredLanguagesBadge from '../../components/ColoredLanguagesBadge'
 import ClickableItem from '../ClickableItem'
 import DateElement from './elements/DateElement'
 import BookmarkButton from './elements/BookmarkButton'
+import { FaDev } from 'react-icons/fa'
+import HashNodeIcon from '../../static/icon_hashnode.png'
+import devto from '../../services/devto'
 
 function ArticleFeedItem({ item }) {
+  const displaySource = (source) => {
+    switch (source.id) {
+      case 'devto':
+        return (
+          <>
+            <FaDev className="icon blockHeaderWhite" /> {source.name}
+          </>
+        )
+      case 'hashnode':
+        return (
+          <>
+            <img src={HashNodeIcon} className="icon" style={{ width: '12px', height: '12px' }} />{' '}
+            {source.name}
+          </>
+        )
+      default:
+        return source.name
+    }
+  }
+
   return (
     <ClickableItem className="item" key={item.id} link={item.link} analyticsSource={item.source_id}>
       <div className="item-content">
@@ -21,7 +44,7 @@ function ArticleFeedItem({ item }) {
       </div>
       <div className="item-content-header">
         <BookmarkButton />
-        <span className="item-source">{item.source.name}</span>
+        <span className="item-source">{displaySource(item.source)}</span>
       </div>
     </ClickableItem>
   )
