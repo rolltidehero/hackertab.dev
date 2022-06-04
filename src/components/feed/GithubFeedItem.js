@@ -3,12 +3,15 @@ import ColoredLanguagesBadge from '../../components/ColoredLanguagesBadge'
 import ClickableItem from '../ClickableItem'
 import BookmarkButton from './elements/BookmarkButton'
 import { SiGithub } from 'react-icons/si'
+import { VscRepo, VscRepoForked, VscStarFull } from 'react-icons/vsc'
 
 function GithubFeedItem({ item }) {
   return (
     <ClickableItem className="item" key={item.id} link={item.link} analyticsSource={'github'}>
       <div className="item-content">
         <h4 className="item-title">
+          <VscRepo className={'rowTitleIcon'} />
+          {item.owner && `${item?.owner}/`}
           {item.name} — <span className="item-description">{item.description}</span>
         </h4>
         <div className="item-meta">

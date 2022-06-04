@@ -819,10 +819,10 @@ Producthunt item
 }
 .feed {
   display: grid;
-  grid-template-columns: repeat(4, 24%);
+  grid-template-columns: repeat(3, 24%);
   justify-content: center;
-  grid-gap: 24px;
-  gap: 24px;
+  grid-gap: 36px;
+  gap: 36px;
 }
 
 .feed .item {
@@ -833,12 +833,12 @@ Producthunt item
   justify-content: space-between;
   background: var(--card-background-color);
   border: 1px solid var(--card-border-color);
-  box-shadow: 1px 1px 0px var(--card-3d-border-color),
+   /*box-shadow: 1px 1px 0px var(--card-3d-border-color),
       2px 2px 0px var(--card-3d-border-color),
       3px 3px 0px var(--card-3d-border-color),
       4px 4px 0px var(--card-3d-border-color),
       5px 5px 0px var(--card-3d-border-color),
-      6px 6px 0px var(--card-3d-border-color);
+      6px 6px 0px var(--card-3d-border-color);*/
 }
 .feed .item:hover {
   cursor: pointer;
