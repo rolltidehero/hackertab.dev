@@ -2,9 +2,6 @@ import React, { useState, useContext, useEffect } from 'react'
 import ColoredLanguagesBadge from '../components/ColoredLanguagesBadge'
 import feed from '../services/feed'
 import InfiniteScroll from 'react-infinite-scroller'
-import { MdAccessTime } from 'react-icons/md'
-import ClickableItem from './ClickableItem'
-import { BiBookmarkPlus } from 'react-icons/bi'
 import PreferencesContext from '../preferences/PreferencesContext'
 import ArticleFeedItem from './feed/ArticleFeedItem'
 import GithubFeedItem from './feed/GithubFeedItem'
@@ -80,7 +77,7 @@ function FeedLayout() {
     let newItems = [...articles.data.data]
     newItems.splice(3, 0, { type: 'ad' })
 
-    if (promisesValues) {
+    if (promisesValues && promisesValues.github) {
       const githubItem = promisesValues.github[0]
       githubItem.type = 'github'
       newItems.splice(5, 0, githubItem)
@@ -100,7 +97,7 @@ function FeedLayout() {
       }}
       hasMore={hasMore}
       element="main"
-      className="AppContent scrollable feed"
+      className="AppContent feed"
       useWindow={true}>
       {feedItems.map((item, index) => {
         return item.type ? (

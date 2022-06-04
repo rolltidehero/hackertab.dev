@@ -8,10 +8,6 @@ function ArticleFeedItem({ item }) {
   return (
     <ClickableItem className="item" key={item.id} link={item.link} analyticsSource={item.source_id}>
       <div className="item-content">
-        <div className="item-content-header">
-          <BookmarkButton />
-          <span className="item-source">{item.source.name}</span>
-        </div>
         <h4 className="item-title">{item.title}</h4>
         <div className="item-meta">
           <span className="item-date">
@@ -22,6 +18,10 @@ function ArticleFeedItem({ item }) {
       </div>
       <div className="item-image">
         <img src={item.img_src} />
+      </div>
+      <div className="item-content-header">
+        <BookmarkButton />
+        <span className="item-source">{item.source.name}</span>
       </div>
     </ClickableItem>
   )
