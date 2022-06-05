@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import PreferencesContext from '../preferences/PreferencesContext'
-import { BiBookmarkPlus } from "react-icons/bi";
-import { BiBookmarkMinus } from "react-icons/bi";
+import { BiBookmarkPlus, BiBookmarkMinus } from 'react-icons/bi'
 import { trackBookmarkFrom, trackUnbookmarkFrom } from "../utils/Analytics"
 
 export default function CardItemWithActions({ cardItem, item, index, source }) {
