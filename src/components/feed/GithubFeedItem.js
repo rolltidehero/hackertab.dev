@@ -8,7 +8,7 @@ import { VscRepo, VscRepoForked, VscStarFull } from 'react-icons/vsc'
 function GithubFeedItem({ item }) {
   return (
     <div className="item github">
-      <ClickableItem key={item.id} link={item.link} analyticsSource={'github'}>
+      <ClickableItem key={item.id} link={item.url} analyticsSource={'github'}>
         <div className="item-content">
           <h4 className="item-title">
             <VscRepo className={'rowTitleIcon'} />
@@ -36,7 +36,7 @@ function GithubFeedItem({ item }) {
         </div>
       </ClickableItem>
       <div className="item-content-footer">
-        <BookmarkButton item={{ title: item.name, link: item.link, source: { id: 'github' } }} />
+        <BookmarkButton item={{ title: item.name, link: item.url, source: { id: 'github' } }} />
         <span className="item-source">
           <SiGithub className="icon blockHeaderWhite" /> Github
         </span>
