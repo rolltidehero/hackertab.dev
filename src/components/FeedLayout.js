@@ -6,7 +6,7 @@ import PreferencesContext from '../preferences/PreferencesContext'
 import ArticleFeedItem from './feed/ArticleFeedItem'
 import GithubFeedItem from './feed/GithubFeedItem'
 import ProducthuntFeedItem from './feed/ProducthuntFeedItem'
-import AdFeedItem from './feed/AdFeedItem'
+import { AdFeedItem, PlaceholderAdFeedItem } from './feed/AdFeedItem'
 import './feed/feed.scss'
 
 function FeedLayout() {
@@ -67,7 +67,9 @@ function FeedLayout() {
 
     console.log('New feed', items)
     setFeedItems(items)
+
     promisesValues.github = feedValues.github
+    promisesValues.producthunt = feedValues.producthunt
     setPromisesValues(promisesValues)
   }
   // To be refactored
@@ -78,11 +80,21 @@ function FeedLayout() {
     let newItems = [...articles.data.data]
     newItems.splice(3, 0, { type: 'ad' })
 
-    if (promisesValues && promisesValues.github) {
-      const githubItem = promisesValues.github[0]
-      githubItem.type = 'github'
-      newItems.splice(5, 0, githubItem)
-      promisesValues.github.splice(0, 1)
+    if (promisesValues) {
+      if (promisesValues.github) {
+        const githubItem = promisesValues.github[0]
+        githubItem.type = 'github'
+        newItems.splice(5, 0, githubItem)
+        promisesValues.github.splice(0, 1)
+      }
+
+      if (promisesValues.producthunt) {
+        const producthuntItem = promisesValues.producthunt[0]
+        producthuntItem.type = 'producthunt'
+        newItems.splice(9, 0, producthuntItem)
+        promisesValues.producthunt.splice(0, 1)
+      }
+
       setPromisesValues(promisesValues)
     }
 

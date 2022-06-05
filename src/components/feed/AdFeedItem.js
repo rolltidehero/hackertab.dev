@@ -2,6 +2,17 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { getBaseApi } from '../../utils/DataUtils'
 
+function PlaceholderAdFeedItem() {
+  return (
+    <div className="item placeholder">
+      <span className="line" />
+      <span className="line small" />
+      <span className="ad-media" />
+      <span className="source" />
+    </div>
+  )
+}
+
 function AdFeedItem() {
   const [ad, setAd] = useState()
 
@@ -32,17 +43,17 @@ function AdFeedItem() {
       rel="noopener sponsored"
       title={ad.company + ' ' + ad.companyTagline}>
       <div className="item-content">
-        <div className="item-content-header">
-          <span className="item-source">by CarbonAds</span>
-        </div>
         <h4 className="item-title">{ad.description}</h4>
       </div>
       <div className="item-ad-image">
         <img src={ad.smallImage} style={{ background: ad.backgroundColor }} />
       </div>
+      <div className="item-content-footer">
+        <span className="item-source">by CarbonAds</span>
+      </div>
     </a>
   ) : (
-    <div>Loading</div>
+    <PlaceholderAdFeedItem />
   )
 }
-export default AdFeedItem
+export { AdFeedItem, PlaceholderAdFeedItem }

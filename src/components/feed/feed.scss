@@ -128,6 +128,51 @@
     }
   }
 
+ .placeholder {
+   padding: 12px;
+   animation-duration: 1.5s;
+   animation-name: cardPlaceholderPulse;
+   animation-iteration-count: infinite;
+   justify-content: center;
+   align-items: center;
+   $radius: 4px;
+
+   .line {
+
+     background: var(--placeholder-background-color);
+     display: block;
+     height: 17px;
+     border-radius: $radius;
+     width: 100%;
+
+     &.small {
+       margin-top: 8px;
+       background: var(--placeholder-background-color);
+       display: block;
+       height: 14px;
+       width: 90%;
+       border-radius: $radius;
+     }
+   }
+
+   .source {
+     width: 60px;
+     height: 14px;
+     background: var(--placeholder-background-color);
+     border-radius: $radius;
+     align-self: end;
+     margin-top: 12px;
+
+   }
+
+   .ad-media {
+     margin-top: 16px;
+     width: 160px;
+     height: 160px;
+     background: var(--placeholder-background-color);
+     display: block;
+   }
+ }
 
   .devto.item {
     .item-image img {
