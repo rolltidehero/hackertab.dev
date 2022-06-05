@@ -22,7 +22,7 @@ function ProducthuntFeedItem({ item }) {
       <div className="item-image">
         <img src={item.img_src} />
       </div>
-      <div className="item-content-header">
+      <div className="item-content-footer">
         <BookmarkButton />
         <span className="item-source">
           <SiProducthunt className="icon" color="#D65736" /> Product Hunt

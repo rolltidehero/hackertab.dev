@@ -7,6 +7,7 @@ import ArticleFeedItem from './feed/ArticleFeedItem'
 import GithubFeedItem from './feed/GithubFeedItem'
 import ProducthuntFeedItem from './feed/ProducthuntFeedItem'
 import AdFeedItem from './feed/AdFeedItem'
+import './feed/feed.scss'
 
 function FeedLayout() {
   const preferences = useContext(PreferencesContext)
