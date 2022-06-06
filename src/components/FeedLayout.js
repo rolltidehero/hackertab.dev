@@ -55,15 +55,19 @@ function FeedLayout() {
     let items = [...feedValues.articles]
     items.splice(0, 0, { type: 'ad' })
 
-    const githubItem = feedValues.github[0]
-    githubItem.type = 'github'
-    items.splice(5, 0, githubItem)
-    feedValues.github.splice(0, 1)
+    if (feedValues.github) {
+      const githubItem = feedValues.github[0]
+      githubItem.type = 'github'
+      items.splice(5, 0, githubItem)
+      feedValues.github.splice(0, 1)
+    }
 
-    const producthuntItem = feedValues.producthunt[0]
-    producthuntItem.type = 'producthunt'
-    items.splice(10, 0, feedValues.producthunt[0])
-    feedValues.producthunt.splice(0, 1)
+    if (feedValues.producthunt) {
+      const producthuntItem = feedValues.producthunt[0]
+      producthuntItem.type = 'producthunt'
+      items.splice(10, 0, feedValues.producthunt[0])
+      feedValues.producthunt.splice(0, 1)
+    }
 
     console.log('New feed', items)
     setFeedItems(items)
