@@ -4,26 +4,34 @@ import ClickableItem from '../ClickableItem'
 import DateElement from './elements/DateElement'
 import BookmarkButton from './elements/BookmarkButton'
 import { FaDev } from 'react-icons/fa'
+import { IoLogoMedium } from 'react-icons/io5'
 import HashNodeIcon from '../../static/icon_hashnode.png'
 
 function ArticleFeedItem({ item }) {
   const displaySource = (source) => {
-    switch (source.id) {
-      case 'devto':
-        return (
-          <>
-            <FaDev className="icon blockHeaderWhite" /> {source.name}
-          </>
-        )
-      case 'hashnode':
-        return (
-          <>
-            <img src={HashNodeIcon} className="icon" style={{ width: '12px', height: '12px' }} />{' '}
-            {source.name}
-          </>
-        )
-      default:
-        return source.name
+    if (source.id.startsWith('devto')) {
+      return (
+        <>
+          <FaDev className="icon blockHeaderWhite" /> {source.name}
+        </>
+      )
+    }
+
+    if (source.id.startsWith('medium')) {
+      return (
+        <>
+          <IoLogoMedium className="icon blockHeaderWhite" /> {source.name}
+        </>
+      )
+    } else if (source.id === 'hashnode') {
+      return (
+        <>
+          <img src={HashNodeIcon} className="icon" style={{ width: '12px', height: '12px' }} />{' '}
+          {source.name}
+        </>
+      )
+    } else {
+      return source.name
     }
   }
 
