@@ -48,14 +48,14 @@ function FeedLayout() {
       constructFeed(promisesValues)
     }
     fetchInitialFeed()
-  }, [])
+  }, [userSelectedTags])
 
   // To be refactored
   const constructFeed = (feedValues) => {
     let items = [...feedValues.articles]
     items.splice(0, 0, { type: 'ad' })
 
-    if (feedValues.github) {
+    if (feedValues.github && feedValues.github.length > 0) {
       const githubItem = feedValues.github[0]
       githubItem.type = 'github'
       items.splice(5, 0, githubItem)
@@ -85,7 +85,7 @@ function FeedLayout() {
     newItems.splice(3, 0, { type: 'ad' })
 
     if (promisesValues) {
-      if (promisesValues.github) {
+      if (promisesValues.github && promisesValues.github.length > 0) {
         const githubItem = promisesValues.github[0]
         githubItem.type = 'github'
         newItems.splice(5, 0, githubItem)
