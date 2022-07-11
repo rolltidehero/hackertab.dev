@@ -1,9 +1,9 @@
 import cachedRequest from './cachedRequest'
 import axios from 'axios'
 
-const base = ''
+const base = 'http://134.209.191.233/api'
 const getFeed = async (tags, page = 0) => {
-  return await axios.get(`${base}/articles?tags=&limit=12&offset=${page * 12}`)
+  return await axios.get(`${base}/articles?tags=${tags}&limit=12&offset=${page * 12}`)
 }
 const getProducthuntFeed = async () => {
   return await axios.get(`${base}/producthunt`)

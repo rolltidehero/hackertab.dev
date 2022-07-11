@@ -8,12 +8,14 @@ import RedditCard from './cards/RedditCard'
 import LobstersCard from './cards/LobstersCard'
 import HashNodeCard from './cards/HashNodeCard'
 import FreeCodeCampCard from './cards/FreeCodeCampCard'
+import ArticlesCard from './cards/ArticlesCard'
 import { SiGithub } from 'react-icons/si'
 import { SiYcombinator } from 'react-icons/si'
 import { FaDev } from 'react-icons/fa'
 import { SiProducthunt } from 'react-icons/si'
 import { FaReddit } from 'react-icons/fa'
 import { HiTicket } from 'react-icons/hi'
+import { BiNews } from 'react-icons/bi'
 import HashNodeIcon from './static/icon_hashnode.png'
 import LobstersIcon from './static/icon_lobsters.png'
 import { FaFreeCodeCamp } from 'react-icons/fa'
@@ -99,6 +101,13 @@ export const SUPPORTED_CARDS = [
     analyticsTag: 'freecodecamp',
     label: 'FreeCodeCamp',
     component: FreeCodeCampCard,
+  },
+  {
+    value: 'articles',
+    icon: <BiNews className="blockHeaderWhite" />,
+    analyticsTag: 'Articles',
+    label: 'AI-powered (Beta)',
+    component: ArticlesCard,
   },
 ]
 

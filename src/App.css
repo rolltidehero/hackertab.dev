@@ -403,7 +403,15 @@ a {
 .rowDetails  .hnRowItem {
   color: #F6682F
 }
-
+.rowDetails .source{
+  font-weight: bold;
+}
+.rowDetails .source img{
+  width:12px;
+  height:12px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
 .rowDetails .redditRowItem {
   color: #FA481D;
 }
