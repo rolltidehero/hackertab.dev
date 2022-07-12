@@ -1,7 +1,7 @@
 import cachedRequest from './cachedRequest'
 import axios from 'axios'
 
-const base = 'http://134.209.191.233/api'
+const base = 'https://api.hackertab.dev/feed'
 const getFeed = async (tags, page = 0) => {
   return await axios.get(`${base}/articles?tags=${tags}&limit=12&offset=${page * 12}`)
 }
