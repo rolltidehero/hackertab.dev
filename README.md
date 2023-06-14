@@ -4,7 +4,15 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/ocoipcahhaedjhnpoanfflhbdcpmalmp?style=plastic)](https://bit.ly/hackertab-ch)
 [![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/stars/ocoipcahhaedjhnpoanfflhbdcpmalmp.svg?colorB=%234FC828&label=rating&style=flat)](https://chrome.google.com/webstore/detail/hackertabdev/ocoipcahhaedjhnpoanfflhbdcpmalmp/reviews)
 
-# Hackertab.dev — All Developer news in one tab!
+# TODO by HERO:
+- Add more tags
+- Add more sources
+- Filter ProductHunt categories
+- Add\change subreddits
+- Add YouTube support for channels I am subscribed to
+- Quick summarize a post with ChatGPT
+——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+## Hackertab.dev — All Developer news in one tab!
 **Hackertab makes it easy for you to stay up-to-date with the latest developer news, tools, jobs and events.**
 
 <img src="/demo/demo_hackertab.dev.jpeg" width="100%" alt="Hackertab.dev"/>
